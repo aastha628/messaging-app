@@ -23,3 +23,15 @@ class AgentRepository:
             res.status_code = status.HTTP_400_BAD_REQUEST
             self.connection.rollback()
             return {"error": str(e)}
+    
+    def checkValidAgent(self,agent_id:int):
+        try:
+            print(agent_id)
+            query="""select exists (select * from agents where agent_id = %s)"""
+            self.cur.execute(query,[agent_id])
+            result=getJsonResponse(self.cur)
+            self.connection.commit()
+            return result
+        except Exception as e:
+            self.connection.rollback()
+            return {"error": str(e)}

@@ -14,8 +14,8 @@ async def register(agent: Agent, res: Response):
 
 
 @app.get("/response")
-def getResponse(res: Response):
-    return QueryRepository().getquery(res)
+def getResponse(agent_id:int,res: Response):
+    return QueryRepository().getquery(agent_id,res)
 
 
 @app.post("/response")
