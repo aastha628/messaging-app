@@ -27,6 +27,10 @@ POST - /response
     "response":{string}
 }
 ```
+## Features
+
+* Preventing multiple user working on same issue by adding a status which tells whether an issue is being answered by any agent or not.
+>>> Whenever an agent fetches a message his `agent_id` is added to the queries table. This query is repeatedly shown to that agent unless it is answered and not shown to anyone else.
 
 ## Steps to run the application
 
