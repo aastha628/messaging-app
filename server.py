@@ -13,7 +13,7 @@ async def register(agent: Agent, res: Response):
     return AgentRepository().registerUser(agent, res)
 
 
-@app.get("/response")
+@app.get("/message")
 def getResponse(res: Response):
     return QueryRepository().getquery(res)
 
