@@ -38,7 +38,12 @@ CREATE TABLE responses(
     response TEXT NOT NULL 
 );
 
+--feature to prevent multiple users work on same message
 
+ALTER TABLE queries
+ADD COLUMN agent_id int REFERENCES agents(agent_id) ON DELETE SET NULL;
 
-
-
+--updating those queries for which responses were given in previous version
+update queries
+set agent_id=responses.agent_id from responses
+where q_id=query_id;
